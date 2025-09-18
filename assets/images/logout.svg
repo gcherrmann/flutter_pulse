@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="21" xml:space="preserve" version="1.1" viewBox="0 0 16 21">
-    <image width="16" height="21" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAVCAYAAABPPm7SAAAAwklEQVQ4T2NkoBAwgvT///+/AUjlA7EAkeZ9AKpbwMjIWMgI1DwBqplIvSjKGkAGvIfarAg08QExpgD1KADV3QfiDyAD/oM0ATWDvUMsgOujmQFAg0FOBAFHbF5DdgFYIVCRIrLzoQaA/AoKFwxD4Abg8jM0oPYD5bEaQtAAkMH4DEH3AsgWYsADmFepZwA+a4nyAsWBCItvsqMRV0okJSENfF6gODvXA2OigZhUhEXNBFiR1g+UTABiUoq0CcCYawQAMC+4vlp7jTQAAAAASUVORK5CYII="/>
-  </svg>
+<svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 9.38094H12.4286" stroke="#41C735" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.61865 5.57144L12.4282 9.38097L8.61865 13.1905" stroke="#41C735" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.85693 1H16.9998V17.7619H7.85693" stroke="#41C735" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
