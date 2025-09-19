@@ -4,34 +4,36 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/ui/core/icons/app_icons.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
 
-class LoginTextFormField extends StatelessWidget {
+class PulseTextFormField extends StatelessWidget {
   final TextEditingController _controller;
-  final FocusNode _focusNode;
+  final FocusNode? focusNode;
   final int _maxLength;
   final bool obscureText;
   final String _label;
+  final Widget _icon;
   final List<TextInputFormatter> _formatters;
   final String? Function(String?)? _validator;
   final TextInputType _keyboardType;
   final ValueNotifier<bool> _obscureTextVN;
   final VoidCallback? onEditingComplete;
 
-  LoginTextFormField({
+  PulseTextFormField({
     super.key,
     required TextEditingController controller,
-    required FocusNode focusNode,
+    this.focusNode,
     required int maxLength,
-    required bool isPassword,
     this.obscureText = false,
+    required Widget icon,
     this.onEditingComplete,
     required List<TextInputFormatter> formatters,
     required String label,
     String? Function(String?)? validator,
     required TextInputType keyboardType,
   }) : _controller = controller,
-       _focusNode = focusNode,
+
        _maxLength = maxLength,
        _label = label,
+       _icon = icon,
        _validator = validator,
        _keyboardType = keyboardType,
        _formatters = formatters,
@@ -55,7 +57,7 @@ class LoginTextFormField extends StatelessWidget {
             TextFormField(
               onEditingComplete: onEditingComplete,
               inputFormatters: _formatters,
-              focusNode: _focusNode,
+              focusNode: focusNode,
               maxLength: _maxLength,
               obscureText: obscureTextVNValue,
               keyboardType: _keyboardType,
@@ -80,7 +82,10 @@ class LoginTextFormField extends StatelessWidget {
                   color: AppColors.placeholderColor, // Custom font style
                   // Add other TextStyle properties as needed
                 ),
-                prefixIconConstraints: BoxConstraints(maxWidth: 40),
+                prefixIconConstraints: BoxConstraints(
+                  minWidth: 20,
+                  maxHeight: 40,
+                ),
                 suffixIconConstraints: BoxConstraints(maxHeight: 40),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -107,14 +112,7 @@ class LoginTextFormField extends StatelessWidget {
                   ), // Set your desired color here
                 ),
 
-                prefixIcon: SvgPicture.asset(
-                  "assets/images/person.svg",
-                  height: 20,
-                  width: 20,
-
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                ),
+                prefixIcon: _icon,
                 suffixIcon: obscureText
                     ? IconButton(
                         onPressed: () {

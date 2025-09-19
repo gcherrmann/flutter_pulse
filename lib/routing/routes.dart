@@ -10,7 +10,7 @@ final Map<String, WidgetBuilder> appRoutes = {
     create: (_) => LoginViewModel(),
     child: LoginScreen(),
   ),
-  '/forgotPassword': (context) => ChangeNotifierProvider(
+  '/forgotpassword': (context) => ChangeNotifierProvider(
     create: (_) => ForgotPasswordViewModel(),
     child: ForgotPasswordScreen(),
   ),
