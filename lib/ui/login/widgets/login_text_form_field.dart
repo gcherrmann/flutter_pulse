@@ -3,13 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/ui/core/icons/app_icons.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:validatorless/validatorless.dart';
 
 class LoginTextFormField extends StatelessWidget {
   final TextEditingController _controller;
   final FocusNode _focusNode;
-  final bool _isPassword;
   final int _maxLength;
   final bool obscureText;
   final String _label;
@@ -34,7 +31,6 @@ class LoginTextFormField extends StatelessWidget {
   }) : _controller = controller,
        _focusNode = focusNode,
        _maxLength = maxLength,
-       _isPassword = isPassword,
        _label = label,
        _validator = validator,
        _keyboardType = keyboardType,

@@ -45,10 +45,7 @@ class App extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           ),
           //home: defaultHome,
-          home: ChangeNotifierProvider(
-            create: (_) => LoginViewModel(),
-            child: LoginScreen(),
-          ),
+          initialRoute: "/login",
 
           routes: appRoutes,
         );
