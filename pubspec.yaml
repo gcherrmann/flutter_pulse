@@ -23,6 +23,7 @@ dependencies:
   validatorless: ^1.2.4
   command_it: ^8.0.0
   flutter_native_splash: ^2.4.6
+  mask_text_input_formatter: ^2.9.0
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,9 @@ flutter:
           weight: 500
         - asset: assets/fonts/Montserrat-Bold.ttf
           weight: 700
+    - family: AppIcons
+      fonts:
+        - asset: assets/fonts/AppIcons.ttf
 
 flutter_native_splash:
   # This package generates native code to customize Flutter's default white native splash screen

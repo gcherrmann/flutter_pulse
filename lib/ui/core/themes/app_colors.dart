@@ -3,6 +3,7 @@ import 'dart:ui';
 class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const lightGray = Color(0xFFB8C4D0);
+  static const placeholderColor = Color(0xFFB8C4D0);
   static const notificationDateBackground = Color(0xFFCCD3DC);
   static const notificationDateText = Color(0xFF193C5B);
   static const pageBackground = Color(0x99F4F6F9);
