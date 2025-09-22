@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
+import 'package:flutter_template/ui/core/ui/loader.dart';
 import 'package:flutter_template/ui/core/ui/pulse_filled_button.dart';
 import 'package:flutter_template/ui/core/ui/pulse_text_form_field.dart';
 import 'package:flutter_template/ui/forgot_password/view_model/forgot_password_view_model.dart';
@@ -43,68 +44,85 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           iconSize: 20,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(24),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+      body: Selector<ForgotPasswordViewModel, bool>(
+        selector: (_, viewModel) => viewModel.isLoading,
+        builder: (_, isLoading, child) {
+          return Stack(
             children: [
-              Text(
-                "Esqueci minha senha",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontFamily: "Montserrat",
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.boldFontColor,
-                ),
-              ),
-              SizedBox(height: 32),
-              Form(
-                key: _formKey,
-                child: PulseTextFormField(
-                  maxLength: 20,
-                  controller: _emailEC,
-                  formatters: [],
-                  keyboardType: TextInputType.emailAddress,
+              Padding(
+                padding: EdgeInsets.all(24),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Esqueci minha senha",
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.boldFontColor,
+                        ),
+                      ),
+                      SizedBox(height: 32),
+                      Form(
+                        key: _formKey,
+                        child: PulseTextFormField(
+                          maxLength: 20,
+                          controller: _emailEC,
+                          formatters: [],
+                          keyboardType: TextInputType.emailAddress,
 
-                  label: "Digite o e-mail cadastrado",
-                  icon: SvgPicture.asset(
-                    "assets/images/email.svg",
-                    height: 20,
-                    width: 20,
+                          label: "Digite o e-mail cadastrado",
+                          icon: SvgPicture.asset(
+                            "assets/images/email.svg",
+                            height: 20,
+                            width: 20,
 
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                          ),
+                          obscureText: false,
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Email obrigatório"),
+                            Validatorless.email(
+                              "E-mail em formato incorreto",
+                            ),
+                          ]),
+                        ),
+                      ),
+                      SizedBox(height: 32),
+                      SizedBox(
+                        width: double.infinity,
+                        child: PulseFilledButton(
+                          onPressed: () async {
+                            final formValid =
+                                _formKey.currentState?.validate() ?? false;
+                            if (formValid) {
+                              final email = _emailEC.text;
+                              await _forgotPasswordViewModel.sendRecoveryEmail(
+                                email,
+                              );
+                            }
+                          },
+                          text: "Enviar Link de Recuperação",
+                        ),
+                      ),
+                      SizedBox(height: 32),
+                    ],
                   ),
-                  obscureText: false,
-                  validator: Validatorless.multiple([
-                    Validatorless.required("Email obrigatório"),
-                    Validatorless.email(
-                      "E-mail em formato incorreto",
-                    ),
-                  ]),
                 ),
               ),
-              SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                child: PulseFilledButton(
-                  onPressed: () async {
-                    final formValid =
-                        _formKey.currentState?.validate() ?? false;
-                    if (formValid) {
-                      final email = _emailEC.text;
-                      await _forgotPasswordViewModel.sendRecoveryEmail(email);
-                    }
-                  },
-                  text: "Enviar Link de Recuperação",
+              if (isLoading)
+                PopScope(
+                  onPopInvokedWithResult: (didPop, result) {},
+                  canPop: false,
+                  child: Loader(),
                 ),
-              ),
-              SizedBox(height: 32),
             ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }

@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Selector<LoginViewModel, bool>(
-        selector: (_, loginViewModel) => loginViewModel.isLoading,
+        selector: (_, viewModel) => viewModel.isLoading,
         builder: (_, isLoading, child) {
           return Stack(
             children: [
