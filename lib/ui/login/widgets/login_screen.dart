@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_template/ui/core/themes/app_colors.dart';
+import 'package:flutter_template/ui/core/ui/loader.dart';
+import 'package:flutter_template/ui/core/ui/pulse_filled_button.dart';
+import 'package:flutter_template/ui/core/ui/pulse_text_button.dart';
+import 'package:flutter_template/ui/core/ui/pulse_text_form_field.dart';
 import 'package:flutter_template/ui/login/view_model/login_view_model.dart';
-import 'package:flutter_template/ui/login/widgets/login_text_form_field.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -49,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Selector<LoginViewModel, bool>(
-        selector: (_, loginViewModel) => loginViewModel.isLoading,
-        builder: (context, isLoading, child) {
+        selector: (_, viewModel) => viewModel.isLoading,
+        builder: (_, isLoading, child) {
           return Stack(
             children: [
               Padding(
@@ -68,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          LoginTextFormField(
+                          PulseTextFormField(
                             maxLength: 14,
                             formatters: [maskFormatter],
                             controller: _cpfEC,
@@ -76,9 +78,16 @@ class _LoginScreenState extends State<LoginScreen> {
                               _secondFieldFocusNode.requestFocus();
                             },
                             focusNode: _firstFieldFocusNode,
-                            isPassword: false,
                             keyboardType: TextInputType.number,
                             label: "Digite seu CPF",
+                            icon: SvgPicture.asset(
+                              "assets/images/person.svg",
+                              height: 20,
+                              width: 20,
+
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                            ),
                             obscureText: false,
                             validator: Validatorless.multiple([
                               Validatorless.required("CPF obrigatório"),
@@ -88,14 +97,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 40,
                           ),
-                          LoginTextFormField(
+                          PulseTextFormField(
                             maxLength: 20,
                             controller: _passwordEC,
                             formatters: [],
                             focusNode: _secondFieldFocusNode,
-                            isPassword: true,
                             keyboardType: TextInputType.text,
                             label: "Digite sua senha",
+                            icon: SvgPicture.asset(
+                              "assets/images/lock.svg",
+                              height: 20,
+                              width: 20,
+
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                            ),
                             obscureText: true,
                             validator: Validatorless.multiple([
                               Validatorless.required("Senha obrigatória"),
@@ -110,10 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           SizedBox(
                             width: double.infinity,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                backgroundColor: AppColors.green,
-                              ),
+                            child: PulseFilledButton(
                               onPressed: () async {
                                 final formValid =
                                     _formKey.currentState?.validate() ?? false;
@@ -123,36 +136,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                   await _loginViewModel.login(cpf, password);
                                 }
                               },
-                              child: Text(
-                                "Acessar",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Montserrat",
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.white,
-                                ),
-                              ),
+                              text: "Acessar",
                             ),
                           ),
                           SizedBox(
                             height: 24,
                           ),
                           Center(
-                            child: TextButton(
+                            child: PulseTextButton(
                               onPressed: () {
                                 Navigator.of(
                                   context,
-                                ).pushNamed("/forgotPassword");
+                                ).pushNamed("/forgotpassword");
                               },
-                              child: Text(
-                                "Esqueci minha senha",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Montserrat",
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.green,
-                                ),
-                              ),
+                              text: "Esqueci minha senha",
                             ),
                           ),
                         ],
@@ -165,22 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 PopScope(
                   onPopInvokedWithResult: (didPop, result) {},
                   canPop: false,
-                  child: Container(
-                    color: Colors.black.withValues(alpha: 0.2),
-
-                    child: Center(
-                      child: Material(
-                        color: Colors.transparent,
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          color: Colors.transparent,
-                          child: CircularProgressIndicator(
-                            color: AppColors.green,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: Loader(),
                 ),
             ],
           );

@@ -40,7 +40,7 @@ class App extends StatelessWidget {
       ],
       builder: (context, child) {
         return MaterialApp(
-          title: 'Template App',
+          title: 'Esfera Pulse',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           ),
