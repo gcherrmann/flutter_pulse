@@ -3,6 +3,7 @@ import 'dart:ui';
 class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const lightGray = Color(0xFFB8C4D0);
+  static const tabLabelGray = Color(0xFFA3B4CC);
   static const drawerBackground = Color(0xFFF4F6F9);
   static const placeholderColor = Color(0xFFB8C4D0);
   static const notificationDateBackground = Color(0xFFCCD3DC);
