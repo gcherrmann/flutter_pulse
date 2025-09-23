@@ -11,18 +11,20 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
+  int tabIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    int tabIndex = 0;
     return Scaffold(
       body: appTabs[tabIndex],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: tabIndex,
         onTap: (index) {
           setState(() {
+            print("Indice = $index");
             tabIndex = index;
           });
         },
-        currentIndex: 0,
         selectedItemColor: AppColors.green,
         unselectedItemColor: AppColors.lightGray,
         selectedLabelStyle: TextStyle(
