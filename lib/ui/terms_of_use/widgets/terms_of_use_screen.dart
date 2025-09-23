@@ -97,7 +97,13 @@ class _TermsOfUseScreenState extends State<TermsOfUseScreen> {
                       SizedBox(
                         width: double.infinity,
                         child: PulseFilledButton(
-                          onPressed: () async {},
+                          onPressed: () async {
+                            if (viewModel.isChecked) {
+                              Navigator.of(
+                                context,
+                              ).pushReplacementNamed('/dashboard');
+                            } else {}
+                          },
                           text: "Salvar e prosseguir",
                         ),
                       ),
