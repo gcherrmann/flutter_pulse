@@ -45,7 +45,7 @@ class App extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           ),
           //home: defaultHome,
-          initialRoute: "/login",
+          initialRoute: "/dashboard",
 
           routes: appRoutes,
         );

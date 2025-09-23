@@ -22,4 +22,8 @@ final Map<String, WidgetBuilder> appRoutes = {
     create: (_) => TermsOfUseViewModel(),
     child: TermsOfUseScreen(),
   ),
+  '/dashboard': (context) => ChangeNotifierProvider(
+    create: (_) => DashboardViewModel(),
+    child: DashboardScreen(),
+  ),
 };
