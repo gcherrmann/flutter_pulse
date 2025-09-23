@@ -134,6 +134,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   final cpf = maskFormatter.getUnmaskedText();
                                   final password = _passwordEC.text;
                                   await _loginViewModel.login(cpf, password);
+                                  await Navigator.of(
+                                    context,
+                                  ).pushNamed("terms-of-service");
                                 }
                               },
                               text: "Acessar",
