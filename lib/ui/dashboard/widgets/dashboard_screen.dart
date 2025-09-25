@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_template/models/evaluation_model.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
+import 'package:flutter_template/ui/core/ui/pulse_drawer.dart';
+import 'package:flutter_template/ui/core/ui/pulse_filled_button.dart';
+import 'package:flutter_template/ui/core/ui/pulse_picker.dart';
+import 'package:flutter_template/ui/dashboard/view_model/dashboard_view_model.dart';
+import 'package:flutter_template/ui/dashboard/widgets/dashboard_filter_button.dart';
+import 'package:flutter_template/ui/dashboard/widgets/dashboard_filter_modal.dart';
+import 'package:flutter_template/ui/dashboard/widgets/evaluation_card.dart';
+import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -10,7 +19,32 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  late DashboardViewModel _viewModel;
   final GlobalKey<ScaffoldState> _sfKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _viewModel = context.read();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _viewModel.initialize();
+      _viewModel.filter();
+    });
+  }
+
+  void filter() {}
+
+  void showFilter(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext sheetContext) {
+        return DashboardFilterModal(
+          action: _viewModel.setAndFilter,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,123 +59,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           iconSize: 20,
         ),
       ),
-      drawer: Drawer(
-        child: Container(
-          color: AppColors.white,
-          child: Padding(
-            padding: EdgeInsetsGeometry.only(top: 32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        _sfKey.currentState!.closeDrawer();
-                      },
-                      color: AppColors.tabBarIconOutline,
-                      icon: SvgPicture.asset("assets/images/close.svg"),
-                      iconSize: 20,
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 32,
-                      ),
-                      child: Row(
-                        spacing: 16,
-                        children: [
-                          CircleAvatar(
-                            radius: 25,
-                            backgroundImage: NetworkImage(
-                              'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/07/07f46e97b4feb6643eeffb59d83f883c4ea55dcc_full.jpg',
-                            ),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            spacing: 2,
-                            children: [
-                              Text(
-                                "Zack Hawkins",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Montserrat",
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.boldFontColor,
-                                ),
-                              ),
-                              Text(
-                                "Colaborador",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Montserrat",
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColors.boldFontColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    SizedBox(height: 10),
-                  ],
-                ),
-
-                //Body
-                Expanded(
-                  child: Container(
-                    color: AppColors.drawerBackground,
-                    child: Column(
-                      children: [
-                        ListTile(
-                          leading: SvgPicture.asset(
-                            "assets/images/use_terms.svg",
-                          ),
-                          title: Text(
-                            "Termos de uso",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.boldFontColor,
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.of(
-                              context,
-                            ).pushNamed('/terms-of-service');
-                          },
-                        ),
-                        ListTile(
-                          leading: SvgPicture.asset("assets/images/exit.svg"),
-                          title: Text(
-                            "Sair",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.boldFontColor,
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.of(
-                              context,
-                            ).pushReplacementNamed('/login');
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      drawer: PulseDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -188,56 +106,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Spacer(),
                 Row(
                   children: [
-                    FilledButton(
-                      onPressed: () {},
-                      style: FilledButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                      ),
-                      child: Row(
-                        spacing: 8,
-                        children: [
-                          SvgPicture.asset("assets/images/graphics.svg"),
-                          Text(
-                            "Gráfico",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.boldFontColor,
-                            ),
-                          ),
-                        ],
-                      ),
+                    DashboardFilterButton(
+                      label: "Gráfico",
+                      iconPath: "assets/images/graphics.svg",
+                      action: () {},
                     ),
                     SizedBox(width: 16),
-                    FilledButton(
-                      onPressed: () {},
-                      style: FilledButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                      ),
-                      child: Row(
-                        spacing: 8,
-                        children: [
-                          SvgPicture.asset("assets/images/filters_green.svg"),
-                          Text(
-                            "Filtros",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.boldFontColor,
-                            ),
-                          ),
-                        ],
-                      ),
+                    DashboardFilterButton(
+                      label: "Filtros",
+                      iconPath: "assets/images/filters_green.svg",
+                      action: () {
+                        showFilter(context);
+                      },
                     ),
                   ],
                 ),
@@ -247,103 +127,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
               height: 12,
             ),
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.all(12),
-                    margin: EdgeInsets.only(bottom: 8),
-
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      border: Border.all(
-                        color: AppColors.white,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      spacing: 14,
-                      children: [
-                        Row(
-                          spacing: 10,
-                          children: [
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            Text(
-                              "Consulta 1",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.boldFontColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              spacing: 2,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Profissional",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.boldFontColor50,
-                                  ),
-                                ),
-                                Text(
-                                  "Zack Hawkins",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.boldFontColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: 2,
-                              children: [
-                                Text(
-                                  "Data",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.boldFontColor50,
-                                  ),
-                                ),
-                                Text(
-                                  "23/05/2020",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.boldFontColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
+              child: Selector<DashboardViewModel, List<EvaluationModel>>(
+                builder: (context, value, child) => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: context
+                      .read<DashboardViewModel>()
+                      .filteredList
+                      .length,
+                  itemBuilder: (context, index) {
+                    return EvaluationCard(
+                      model: context
+                          .read<DashboardViewModel>()
+                          .filteredList[index],
+                    );
+                  },
+                ),
+                selector: (_, viewModel) => viewModel.filteredList,
               ),
             ),
           ],

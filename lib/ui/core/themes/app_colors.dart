@@ -3,6 +3,8 @@ import 'dart:ui';
 class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const lightGray = Color(0xFFB8C4D0);
+  static const borderColor = Color(0xFFB7C3D2);
+  static const placeHolderColor = Color(0xFF9CACBC);
   static const tabLabelGray = Color(0xFFA3B4CC);
   static const drawerBackground = Color(0xFFF4F6F9);
   static const placeholderColor = Color(0xFFB8C4D0);
@@ -22,5 +24,6 @@ class AppColors {
   static const boldFontColor50 = Color(0x801A3C5B);
   static const boldFontColor70 = Color(0xB31A3C5B);
   static const regularFontColor = Color(0xFF1C3044);
+  static const primaryBlue = Color(0xFF1C3044);
   static const regularFontColorSecondary = Color(0xFF262C32);
 }
