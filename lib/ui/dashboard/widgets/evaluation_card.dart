@@ -55,7 +55,7 @@ class EvaluationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _model.name,
+                    "Profissional",
                     style: TextStyle(
                       fontSize: 12,
                       fontFamily: "Montserrat",

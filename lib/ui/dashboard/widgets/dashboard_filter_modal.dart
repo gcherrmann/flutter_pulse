@@ -3,6 +3,7 @@ import 'package:flutter_template/ui/core/themes/app_colors.dart';
 import 'package:flutter_template/ui/core/types/types.dart';
 import 'package:flutter_template/ui/core/ui/pulse_filled_button.dart';
 import 'package:flutter_template/ui/core/ui/pulse_picker.dart';
+import 'package:flutter_template/ui/core/ui/pulse_picker_menu.dart';
 import 'package:flutter_template/ui/dashboard/view_model/dashboard_view_model.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:provider/provider.dart';
@@ -20,10 +21,9 @@ class DashboardFilterModal extends StatefulWidget {
 
 class _DashboardFilterModalState extends State<DashboardFilterModal> {
   String? _filterType;
-
   DateTime? _initialDate;
-
   DateTime? _finalDate;
+  List<String> menuItems = ["Consulta", "Retorno"];
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +35,20 @@ class _DashboardFilterModalState extends State<DashboardFilterModal> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: 24,
         children: [
-          PulsePicker(
+          PulsePickerMenu(
             label: "Tipo de avaliação",
-            placeHolder: "Selecione um tipo de avaliação",
+            placeHolder: _filterType == null
+                ? "Selecione um tipo de avaliação"
+                : _filterType!,
             iconPath: "assets/images/arrow_down.svg",
             iconSize: 12,
             iconColor: AppColors.primaryBlue,
-            action: () {},
+            items: menuItems,
+            action: (value) {
+              setState(() {
+                _filterType = value;
+              });
+            },
           ),
 
           PulsePicker(

@@ -49,7 +49,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _sfKey,
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: AppColors.pageBackground,
         leading: IconButton(
           onPressed: () {
             _sfKey.currentState!.openDrawer();
