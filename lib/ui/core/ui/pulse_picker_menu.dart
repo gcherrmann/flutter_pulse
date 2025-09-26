@@ -109,7 +109,7 @@ class _PulsePickerMenuState extends State<PulsePickerMenu> {
                       fontSize: 16,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w400,
-                      color: AppColors.boldFontColor,
+                      color: AppColors.primaryFontColor,
                     ),
                   ),
                 ),
@@ -136,7 +136,7 @@ class _PulsePickerMenuState extends State<PulsePickerMenu> {
               fontSize: 14,
               fontFamily: "Montserrat",
               fontWeight: FontWeight.w700,
-              color: AppColors.boldFontColor,
+              color: AppColors.primaryFontColor,
             ),
           ),
           TextButton(

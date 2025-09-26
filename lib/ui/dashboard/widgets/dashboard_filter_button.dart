@@ -37,7 +37,7 @@ class DashboardFilterButton extends StatelessWidget {
               fontSize: 12,
               fontFamily: "Montserrat",
               fontWeight: FontWeight.w700,
-              color: AppColors.boldFontColor,
+              color: AppColors.primaryFontColor,
             ),
           ),
         ],

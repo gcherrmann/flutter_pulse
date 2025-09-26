@@ -19,6 +19,11 @@ class DashboardViewModel extends BaseViewModel {
         statusColor: AppColors.blue,
         label: "Consulta 1",
         date: DateTime(2025, 1, 1),
+        temperature: 35.5,
+        oxygen: 98.7,
+        pressure: 12.3,
+        observation:
+            "Cupidatat ea non dolore labore aliqua aute ipsum. Adipisicing deserunt nostrud aliquip tempor laborum ut eu laboris excepteur ipsum ipsum. Cupidatat aliqua deserunt ea laboris occaecat. Laborum nisi tempor adipisicing irure laborum do culpa ea ea sint voluptate aute.",
       ),
       EvaluationModel(
         name: "Johnny Barr",
@@ -26,6 +31,11 @@ class DashboardViewModel extends BaseViewModel {
         statusColor: AppColors.blue,
         label: "Consulta 2",
         date: DateTime(2025, 10, 7),
+        temperature: 40.1,
+        oxygen: 96.6,
+        pressure: 12.7,
+        observation:
+            "Cupidatat ea non dolore labore aliqua aute ipsum. Adipisicing deserunt nostrud aliquip tempor laborum ut eu laboris excepteur ipsum ipsum. Cupidatat aliqua deserunt ea laboris occaecat. Laborum nisi tempor adipisicing irure laborum do culpa ea ea sint voluptate aute.",
       ),
       EvaluationModel(
         name: "Freddie Salazar",
@@ -33,6 +43,11 @@ class DashboardViewModel extends BaseViewModel {
         statusColor: AppColors.green,
         label: "Consulta 3",
         date: DateTime(2025, 4, 15),
+        temperature: 34.9,
+        oxygen: 98.5,
+        pressure: 11.9,
+        observation:
+            "Cupidatat ea non dolore labore aliqua aute ipsum. Adipisicing deserunt nostrud aliquip tempor laborum ut eu laboris excepteur ipsum ipsum. Cupidatat aliqua deserunt ea laboris occaecat. Laborum nisi tempor adipisicing irure laborum do culpa ea ea sint voluptate aute.",
       ),
       EvaluationModel(
         name: "Tess Myers",
@@ -40,6 +55,11 @@ class DashboardViewModel extends BaseViewModel {
         statusColor: AppColors.purple,
         label: "Retorno 4",
         date: DateTime(2025, 5, 12),
+        temperature: 37.4,
+        oxygen: 98.9,
+        pressure: 13.3,
+        observation:
+            "Cupidatat ea non dolore labore aliqua aute ipsum. Adipisicing deserunt nostrud aliquip tempor laborum ut eu laboris excepteur ipsum ipsum. Cupidatat aliqua deserunt ea laboris occaecat. Laborum nisi tempor adipisicing irure laborum do culpa ea ea sint voluptate aute.",
       ),
       EvaluationModel(
         name: "Albert Howe",
@@ -47,6 +67,11 @@ class DashboardViewModel extends BaseViewModel {
         statusColor: AppColors.orange,
         label: "Retorno 5",
         date: DateTime(2025, 10, 7),
+        temperature: 38,
+        oxygen: 99.1,
+        pressure: 10.8,
+        observation:
+            "Cupidatat ea non dolore labore aliqua aute ipsum. Adipisicing deserunt nostrud aliquip tempor laborum ut eu laboris excepteur ipsum ipsum. Cupidatat aliqua deserunt ea laboris occaecat. Laborum nisi tempor adipisicing irure laborum do culpa ea ea sint voluptate aute.",
       ),
       EvaluationModel(
         name: "Andreas Orozco",
@@ -54,6 +79,11 @@ class DashboardViewModel extends BaseViewModel {
         statusColor: AppColors.red,
         label: "Consulta 6",
         date: DateTime(2025, 4, 15),
+        temperature: 36.7,
+        oxygen: 99.2,
+        pressure: 13.1,
+        observation:
+            "Cupidatat ea non dolore labore aliqua aute ipsum. Adipisicing deserunt nostrud aliquip tempor laborum ut eu laboris excepteur ipsum ipsum. Cupidatat aliqua deserunt ea laboris occaecat. Laborum nisi tempor adipisicing irure laborum do culpa ea ea sint voluptate aute.",
       ),
     ];
     filteredList = [...evaluationList];

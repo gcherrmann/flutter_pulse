@@ -47,9 +47,7 @@ class App extends StatelessWidget {
               backgroundColor: Colors.white,
             ),
           ),
-          //home: defaultHome,
           initialRoute: "/tabs",
-
           routes: appRoutes,
         );
       },

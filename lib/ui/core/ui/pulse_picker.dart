@@ -39,7 +39,7 @@ class PulsePicker extends StatelessWidget {
             fontSize: 14,
             fontFamily: "Montserrat",
             fontWeight: FontWeight.w700,
-            color: AppColors.boldFontColor,
+            color: AppColors.primaryFontColor,
           ),
         ),
         TextButton(

@@ -42,7 +42,7 @@ class EvaluationCard extends StatelessWidget {
                   fontSize: 14,
                   fontFamily: "Montserrat",
                   fontWeight: FontWeight.w700,
-                  color: AppColors.boldFontColor,
+                  color: AppColors.primaryFontColor,
                 ),
               ),
             ],
@@ -60,7 +60,9 @@ class EvaluationCard extends StatelessWidget {
                       fontSize: 12,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w400,
-                      color: AppColors.boldFontColor50,
+                      color: AppColors.primaryFontColor.withValues(
+                        alpha: 0.5,
+                      ),
                     ),
                   ),
                   Text(
@@ -69,7 +71,7 @@ class EvaluationCard extends StatelessWidget {
                       fontSize: 12,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w500,
-                      color: AppColors.boldFontColor,
+                      color: AppColors.primaryFontColor,
                     ),
                   ),
                 ],
@@ -84,7 +86,9 @@ class EvaluationCard extends StatelessWidget {
                       fontSize: 12,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w400,
-                      color: AppColors.boldFontColor50,
+                      color: AppColors.primaryFontColor.withValues(
+                        alpha: 0.5,
+                      ),
                     ),
                   ),
                   Text(
@@ -93,7 +97,7 @@ class EvaluationCard extends StatelessWidget {
                       fontSize: 12,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w500,
-                      color: AppColors.boldFontColor,
+                      color: AppColors.primaryFontColor,
                     ),
                   ),
                 ],

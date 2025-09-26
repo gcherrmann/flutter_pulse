@@ -52,7 +52,7 @@ class PulseDrawer extends StatelessWidget {
                                 fontSize: 14,
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.boldFontColor,
+                                color: AppColors.primaryFontColor,
                               ),
                             ),
                             Text(
@@ -61,7 +61,7 @@ class PulseDrawer extends StatelessWidget {
                                 fontSize: 14,
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w400,
-                                color: AppColors.boldFontColor,
+                                color: AppColors.primaryFontColor,
                               ),
                             ),
                           ],
@@ -90,7 +90,7 @@ class PulseDrawer extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: "Montserrat",
                             fontWeight: FontWeight.w400,
-                            color: AppColors.boldFontColor,
+                            color: AppColors.primaryFontColor,
                           ),
                         ),
                         onTap: () {
@@ -107,7 +107,7 @@ class PulseDrawer extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: "Montserrat",
                             fontWeight: FontWeight.w400,
-                            color: AppColors.boldFontColor,
+                            color: AppColors.primaryFontColor,
                           ),
                         ),
                         onTap: () {

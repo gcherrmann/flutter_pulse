@@ -20,9 +20,7 @@ class AppColors {
   static const red = Color(0xFFE05151);
   static const red10 = Color(0x1AE05151);
   static const blue = Color(0xFF1B69B0);
-  static const boldFontColor = Color(0xFF1A3C5B);
-  static const boldFontColor50 = Color(0x801A3C5B);
-  static const boldFontColor70 = Color(0xB31A3C5B);
+  static const primaryFontColor = Color(0xFF1A3C5B);
   static const regularFontColor = Color(0xFF1C3044);
   static const primaryBlue = Color(0xFF1C3044);
   static const regularFontColorSecondary = Color(0xFF262C32);

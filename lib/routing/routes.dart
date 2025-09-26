@@ -3,6 +3,8 @@ import 'package:flutter_template/ui/alerts/view_model/alert_view_model.dart';
 import 'package:flutter_template/ui/alerts/widgets/alert_screen.dart';
 import 'package:flutter_template/ui/dashboard/view_model/dashboard_view_model.dart';
 import 'package:flutter_template/ui/dashboard/widgets/dashboard_screen.dart';
+import 'package:flutter_template/ui/evaluation_details/view_model/evaluation_details_view_model.dart';
+import 'package:flutter_template/ui/evaluation_details/widgets/evaluation_details_screen.dart';
 import 'package:flutter_template/ui/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:flutter_template/ui/forgot_password/widgets/forgot_password_screen.dart';
 import 'package:flutter_template/ui/login/view_model/login_view_model.dart';
@@ -36,6 +38,10 @@ final Map<String, WidgetBuilder> appRoutes = {
     create: (_) => TabViewModel(),
     child: TabScreen(),
   ),
+  '/evaluationDetails': (context) => ChangeNotifierProvider(
+    create: (_) => EvaluationDetailsViewModel(),
+    child: EvaluationDetailsScreen(),
+  ),
 };
 
 final List<Widget> appTabs = [
@@ -46,6 +52,10 @@ final List<Widget> appTabs = [
   ChangeNotifierProvider(
     create: (_) => AlertViewModel(),
     child: AlertScreen(),
+  ),
+  ChangeNotifierProvider(
+    create: (_) => NotificationsViewModel(),
+    child: NotificationsScreen(),
   ),
   ChangeNotifierProvider(
     create: (_) => NotificationsViewModel(),

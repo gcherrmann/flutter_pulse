@@ -45,6 +45,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+  Future<void> goToEvaluationDetails(EvaluationModel model) async {
+    await Navigator.of(
+      context,
+    ).pushNamed('/evaluationDetails', arguments: model);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +82,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       fontSize: 28,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w700,
-                      color: AppColors.boldFontColor,
+                      color: AppColors.primaryFontColor,
                     ),
                   ),
                   Text(
@@ -85,7 +91,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       fontSize: 16,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w400,
-                      color: AppColors.boldFontColor,
+                      color: AppColors.primaryFontColor,
                     ),
                   ),
                 ],
@@ -103,17 +109,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     fontSize: 12,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w700,
-                    color: AppColors.boldFontColor,
+                    color: AppColors.primaryFontColor,
                   ),
                 ),
                 Spacer(),
                 Row(
                   children: [
-                    DashboardFilterButton(
-                      label: "Gráfico",
-                      iconPath: "assets/images/graphics.svg",
-                      action: () {},
-                    ),
                     SizedBox(width: 16),
                     DashboardFilterButton(
                       label: "Filtros",
@@ -138,10 +139,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       .filteredList
                       .length,
                   itemBuilder: (context, index) {
-                    return EvaluationCard(
-                      model: context
-                          .read<DashboardViewModel>()
-                          .filteredList[index],
+                    final evaluation = context
+                        .read<DashboardViewModel>()
+                        .filteredList[index];
+                    return GestureDetector(
+                      onTap: () => goToEvaluationDetails(evaluation),
+                      child: EvaluationCard(
+                        model: evaluation,
+                      ),
                     );
                   },
                 ),
