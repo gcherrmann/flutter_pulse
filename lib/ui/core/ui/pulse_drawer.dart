@@ -20,7 +20,6 @@ class PulseDrawer extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      //_sfKey.currentState!.closeDrawer();
                       Scaffold.of(context).closeDrawer();
                     },
                     color: AppColors.tabBarIconOutline,

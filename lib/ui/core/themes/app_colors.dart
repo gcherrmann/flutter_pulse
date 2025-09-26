@@ -8,8 +8,8 @@ class AppColors {
   static const tabLabelGray = Color(0xFFA3B4CC);
   static const drawerBackground = Color(0xFFF4F6F9);
   static const placeholderColor = Color(0xFFB8C4D0);
-  static const notificationDateBackground = Color(0xFFCCD3DC);
-  static const notificationDateText = Color(0xFF193C5B);
+  static const listDateSeparatorBackground = Color(0xFFCCD3DC);
+  static const listDateText = Color(0xFF193C5B);
   static const pageBackground = Color(0x99F4F6F9);
   static const tabBarIconOutline = Color(0xFFBFCAD9);
   static const green = Color(0xFF41C735);

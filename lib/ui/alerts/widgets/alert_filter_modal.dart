@@ -1,39 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/ui/alerts/view_model/alert_view_model.dart';
 import 'package:flutter_template/ui/core/extensions/datetime_extension.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
 import 'package:flutter_template/ui/core/types/types.dart';
 import 'package:flutter_template/ui/core/ui/pulse_filled_button.dart';
 import 'package:flutter_template/ui/core/ui/pulse_picker.dart';
-import 'package:flutter_template/ui/core/ui/pulse_picker_menu.dart';
-import 'package:flutter_template/ui/dashboard/view_model/dashboard_view_model.dart';
 import 'package:flutter_template/utils/functions.dart';
 
-class DashboardFilterModal extends StatefulWidget {
-  final DashboardViewModel _viewModel;
+class AlertFilterModal extends StatefulWidget {
+  final AlertViewModel _viewModel;
 
-  const DashboardFilterModal({
+  AlertFilterModal({
     super.key,
-    required DashboardViewModel viewModel,
+    required AlertViewModel viewModel,
   }) : _viewModel = viewModel;
 
   @override
-  State<DashboardFilterModal> createState() => _DashboardFilterModalState();
+  State<AlertFilterModal> createState() => _AlertFilterModalState();
 }
 
-class _DashboardFilterModalState extends State<DashboardFilterModal> {
-  String? _filterType;
+class _AlertFilterModalState extends State<AlertFilterModal> {
   DateTime? _initialDate;
   DateTime? _finalDate;
-  List<String> menuItems = ["Consulta", "Retorno"];
 
+  @override
   void initState() {
     super.initState();
     var viewModel = widget._viewModel;
-    if (viewModel.filterType != null) {
-      _filterType = viewModel.filterType;
-      print(_filterType.hashCode);
-      print(viewModel.filterType.hashCode);
-    }
     if (viewModel.initialDate != null) {
       _initialDate = viewModel.initialDate!.clone();
     }
@@ -52,22 +45,6 @@ class _DashboardFilterModalState extends State<DashboardFilterModal> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: 24,
         children: [
-          PulsePickerMenu(
-            label: "Tipo de avaliação",
-            placeHolder: _filterType == null
-                ? "Selecione um tipo de avaliação"
-                : _filterType!,
-            iconPath: "assets/images/arrow_down.svg",
-            iconSize: 12,
-            iconColor: AppColors.primaryBlue,
-            items: menuItems,
-            action: (value) {
-              setState(() {
-                _filterType = value;
-              });
-            },
-          ),
-
           PulsePicker(
             label: "Data final",
             placeHolder: _initialDate == null
@@ -117,11 +94,7 @@ class _DashboardFilterModalState extends State<DashboardFilterModal> {
           ),
           PulseFilledButton(
             onPressed: () {
-              widget._viewModel.setAndFilter(
-                _filterType,
-                _initialDate,
-                _finalDate,
-              );
+              widget._viewModel.setFilter(_initialDate, _finalDate);
               Navigator.pop(context);
             },
             text: "Filtrar",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_template/models/evaluation_model.dart';
+import 'package:flutter_template/domain/models/evaluation_model.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
 import 'package:flutter_template/ui/core/ui/pulse_drawer.dart';
 import 'package:flutter_template/ui/core/ui/pulse_filled_button.dart';
@@ -39,7 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       context: context,
       builder: (BuildContext sheetContext) {
         return DashboardFilterModal(
-          action: _viewModel.setAndFilter,
+          viewModel: _viewModel,
         );
       },
     );

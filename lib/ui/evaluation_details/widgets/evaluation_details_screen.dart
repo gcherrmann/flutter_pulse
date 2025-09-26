@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_template/models/evaluation_model.dart';
+import 'package:flutter_template/domain/models/evaluation_model.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
 import 'package:flutter_template/ui/evaluation_details/widgets/evaluation_item.dart';
 import 'package:flutter_template/utils/functions.dart';
