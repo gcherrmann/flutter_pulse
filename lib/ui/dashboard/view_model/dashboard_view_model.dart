@@ -1,4 +1,4 @@
-import 'package:flutter_template/models/evaluation_model.dart';
+import 'package:flutter_template/domain/models/evaluation_model.dart';
 import 'package:flutter_template/ui/core/base/base_view_model.dart';
 import 'package:flutter_template/ui/core/themes/app_colors.dart';
 
