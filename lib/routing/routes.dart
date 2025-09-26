@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/ui/alerts/view_model/alert_view_model.dart';
+import 'package:flutter_template/ui/alerts/widgets/alert_screen.dart';
 import 'package:flutter_template/ui/dashboard/view_model/dashboard_view_model.dart';
 import 'package:flutter_template/ui/dashboard/widgets/dashboard_screen.dart';
+import 'package:flutter_template/ui/evaluation_details/view_model/evaluation_details_view_model.dart';
+import 'package:flutter_template/ui/evaluation_details/widgets/evaluation_details_screen.dart';
 import 'package:flutter_template/ui/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:flutter_template/ui/forgot_password/widgets/forgot_password_screen.dart';
 import 'package:flutter_template/ui/login/view_model/login_view_model.dart';
 import 'package:flutter_template/ui/login/widgets/login_screen.dart';
+import 'package:flutter_template/ui/notifications/view_model/notifications_view_model.dart';
+import 'package:flutter_template/ui/notifications/widgets/notifications_screen.dart';
+import 'package:flutter_template/ui/tab_screen/view_model/tab_view_model.dart';
+import 'package:flutter_template/ui/tab_screen/widgets/tab_screen.dart';
 import 'package:flutter_template/ui/terms_of_use/view_model/terms_of_use_view_model.dart';
 import 'package:flutter_template/ui/terms_of_use/widgets/terms_of_use_screen.dart';
 import 'package:provider/provider.dart';
@@ -22,4 +30,35 @@ final Map<String, WidgetBuilder> appRoutes = {
     create: (_) => TermsOfUseViewModel(),
     child: TermsOfUseScreen(),
   ),
+  '/dashboard': (context) => ChangeNotifierProvider(
+    create: (_) => DashboardViewModel(),
+    child: DashboardScreen(),
+  ),
+  '/tabs': (context) => ChangeNotifierProvider(
+    create: (_) => TabViewModel(),
+    child: TabScreen(),
+  ),
+  '/evaluationDetails': (context) => ChangeNotifierProvider(
+    create: (_) => EvaluationDetailsViewModel(),
+    child: EvaluationDetailsScreen(),
+  ),
 };
+
+final List<Widget> appTabs = [
+  ChangeNotifierProvider(
+    create: (_) => DashboardViewModel(),
+    child: DashboardScreen(),
+  ),
+  ChangeNotifierProvider(
+    create: (_) => AlertViewModel(),
+    child: AlertScreen(),
+  ),
+  ChangeNotifierProvider(
+    create: (_) => NotificationsViewModel(),
+    child: NotificationsScreen(),
+  ),
+  ChangeNotifierProvider(
+    create: (_) => NotificationsViewModel(),
+    child: NotificationsScreen(),
+  ),
+];

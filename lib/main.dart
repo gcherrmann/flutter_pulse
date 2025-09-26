@@ -43,10 +43,11 @@ class App extends StatelessWidget {
           title: 'Esfera Pulse',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+            bottomSheetTheme: BottomSheetThemeData(
+              backgroundColor: Colors.white,
+            ),
           ),
-          //home: defaultHome,
-          initialRoute: "/login",
-
+          initialRoute: "/tabs",
           routes: appRoutes,
         );
       },
